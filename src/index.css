@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,16 +17,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 212 100% 50%;
+    --primary: 22 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
+    --secondary: 36 100% 96%;
+    --secondary-foreground: 24 9% 10%;
 
     --muted: 240 5% 96%;
     --muted-foreground: 240 4% 46%;
 
-    --accent: 212 100% 50%;
+    --accent: 22 100% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -33,9 +34,9 @@
 
     --border: 240 6% 90%;
     --input: 240 6% 90%;
-    --ring: 212 100% 50%;
+    --ring: 22 100% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -44,7 +45,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 22 100% 60%;
   }
 
   .dark {
@@ -57,7 +58,7 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 212 100% 50%;
+    --primary: 22 90% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 4% 8%;
@@ -66,7 +67,7 @@
     --muted: 240 4% 8%;
     --muted-foreground: 240 5% 65%;
 
-    --accent: 212 100% 50%;
+    --accent: 22 90% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 30%;
@@ -74,7 +75,7 @@
 
     --border: 240 4% 16%;
     --input: 240 4% 16%;
-    --ring: 212 100% 50%;
+    --ring: 22 90% 50%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -99,6 +100,10 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
   }
 }
 

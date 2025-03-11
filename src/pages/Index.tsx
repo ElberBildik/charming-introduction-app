@@ -7,6 +7,7 @@ import Features from "@/components/Features";
 import ProductShowcase from "@/components/ProductShowcase";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui-custom/Button";
+import { Utensils, Search } from "lucide-react";
 
 const Index = () => {
   useEffect(() => {
@@ -22,16 +23,23 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <div className="container mx-auto py-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Tarif Bulmaya Başlayın</h2>
-          <p className="mb-6 text-muted-foreground max-w-lg mx-auto">
-            Elinizde bulunan malzemeleri seçin ve size uygun tarifleri hemen keşfedin!
-          </p>
-          <Link to="/products">
-            <Button size="lg">
-              Malzemeleri Seçmeye Başla
-            </Button>
-          </Link>
+        <div className="container mx-auto py-16 text-center">
+          <div className="max-w-3xl mx-auto bg-secondary/30 p-8 rounded-2xl shadow-sm">
+            <h2 className="text-2xl font-bold mb-4">Tarif Bulmaya Başlayın</h2>
+            <p className="mb-6 text-muted-foreground max-w-lg mx-auto">
+              Elinizde bulunan malzemeleri seçin ve size uygun tarifleri hemen keşfedin!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/products">
+                <Button size="lg" iconLeft={<Search className="mr-2 h-5 w-5" />}>
+                  Malzemelere Göre Ara
+                </Button>
+              </Link>
+              <Button variant="outline" size="lg" iconLeft={<Utensils className="mr-2 h-5 w-5" />}>
+                Popüler Tariflere Göz At
+              </Button>
+            </div>
+          </div>
         </div>
         <Features />
         <ProductShowcase />

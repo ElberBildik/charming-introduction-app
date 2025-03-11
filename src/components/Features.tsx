@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from "react";
-import { Layers, Cpu, Shield, Zap, RefreshCw, Award } from "lucide-react";
+import { Utensils, Search, Clock, ChefHat, Star, Heart, BookOpen, Salad } from "lucide-react";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -80,34 +80,34 @@ const Features = () => {
 
   const features = [
     {
-      icon: <Layers size={24} />,
-      title: "Layered Architecture",
-      description: "A thoughtfully designed system with clear separation of concerns.",
+      icon: <Search size={24} />,
+      title: "Kolay Tarif Arama",
+      description: "Malzemelerinize göre uygun tarifleri anında bulun.",
     },
     {
-      icon: <Cpu size={24} />,
-      title: "Powerful Core",
-      description: "Built on a foundation of performance and reliability.",
+      icon: <Utensils size={24} />,
+      title: "5000+ Tarif",
+      description: "Geniş tarif koleksiyonumuzla her damak tadına uygun yemekler.",
     },
     {
-      icon: <Shield size={24} />,
-      title: "Secure by Default",
-      description: "Every aspect of the system is designed with security in mind.",
+      icon: <Clock size={24} />,
+      title: "Hızlı Hazırlanan Tarifler",
+      description: "30 dakikadan kısa sürede hazırlayabileceğiniz lezzetli seçenekler.",
     },
     {
-      icon: <Zap size={24} />,
-      title: "Lightning Fast",
-      description: "Optimized for speed and responsiveness in every interaction.",
+      icon: <ChefHat size={24} />,
+      title: "Profesyonel Şef Tavsiyeleri",
+      description: "Ünlü şeflerden püf noktaları ve teknikler.",
     },
     {
-      icon: <RefreshCw size={24} />,
-      title: "Seamless Updates",
-      description: "Continuous improvement with non-disruptive updates.",
+      icon: <Heart size={24} />,
+      title: "Favorilere Ekleme",
+      description: "Sevdiğiniz tarifleri kaydedin ve kolayca erişin.",
     },
     {
-      icon: <Award size={24} />,
-      title: "Award-winning Design",
-      description: "Recognized for excellence in user experience and aesthetics.",
+      icon: <Salad size={24} />,
+      title: "Sağlıklı Seçenekler",
+      description: "Besleyici ve sağlıklı tariflerle daha iyi beslenin.",
     },
   ];
 
@@ -115,9 +115,9 @@ const Features = () => {
     <section className="py-20 md:py-32 bg-secondary/30">
       <div className="container mx-auto px-6">
         <div ref={featuresRef} className="text-center max-w-2xl mx-auto mb-16 opacity-0">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Perfectly Crafted Features</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Mutfakta Hayatınızı Kolaylaştırıyoruz</h2>
           <p className="text-muted-foreground text-lg">
-            Every feature is designed with purpose, focusing on what matters most.
+            YemekyApp ile yemek pişirmenin keyfini çıkarın ve yeni lezzetler keşfedin.
           </p>
         </div>
 
