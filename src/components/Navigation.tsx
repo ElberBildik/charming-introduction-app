@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui-custom/Button";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChefHat, Utensils } from "lucide-react";
+import { Menu, X, ChefHat, Utensils, BookOpen } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,8 +43,11 @@ const Navigation = () => {
             <Link to="/" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
               Ana Sayfa
             </Link>
-            <Link to="/products" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/tarifler" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
               Tarifler
+            </Link>
+            <Link to="/products" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+              Malzemeler
             </Link>
             <Link to="/about" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
               Kategoriler
@@ -91,11 +94,18 @@ const Navigation = () => {
               Ana Sayfa
             </Link>
             <Link
-              to="/products"
+              to="/tarifler"
               className="py-3 text-lg font-medium border-b border-border"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Tarifler
+            </Link>
+            <Link
+              to="/products"
+              className="py-3 text-lg font-medium border-b border-border"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Malzemeler
             </Link>
             <Link
               to="/about"

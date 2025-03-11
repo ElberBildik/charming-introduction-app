@@ -7,7 +7,7 @@ import Features from "@/components/Features";
 import ProductShowcase from "@/components/ProductShowcase";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui-custom/Button";
-import { Utensils, Search } from "lucide-react";
+import { Utensils, Search, BookOpen } from "lucide-react";
 
 const Index = () => {
   useEffect(() => {
@@ -35,9 +35,11 @@ const Index = () => {
                   Malzemelere Göre Ara
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" iconLeft={<Utensils className="mr-2 h-5 w-5" />}>
-                Popüler Tariflere Göz At
-              </Button>
+              <Link to="/tarifler">
+                <Button variant="outline" size="lg" iconLeft={<BookOpen className="mr-2 h-5 w-5" />}>
+                  Tüm Tariflere Göz At
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
