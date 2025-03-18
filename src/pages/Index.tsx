@@ -19,9 +19,9 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
-      <main>
+      <main className="flex-grow">
         <Hero />
         <div className="container mx-auto py-16 text-center">
           <div className="max-w-3xl mx-auto bg-secondary/30 p-8 rounded-2xl shadow-sm">
