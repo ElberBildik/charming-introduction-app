@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { api } from "@/services/api";
+import { api, Recipe } from "@/services/api";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -77,6 +76,9 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+// New type that matches the required fields for addRecipe
+type NewRecipeData = Omit<Recipe, '_id' | 'createdAt'>;
 
 const TarifEkle = () => {
   const [ingredients, setIngredients] = useState<string[]>([""]);
@@ -160,10 +162,22 @@ const TarifEkle = () => {
         instructions: data.instructions.filter(item => item.trim() !== ""),
       };
       
-      await api.addRecipe({
-        ...filteredData,
+      // Create a complete recipe object with all required fields
+      const recipeData: NewRecipeData = {
+        title: filteredData.title,
+        description: filteredData.description,
+        category: filteredData.category,
+        prepTime: filteredData.prepTime,
+        cookTime: filteredData.cookTime,
+        difficulty: filteredData.difficulty,
+        imageUrl: filteredData.imageUrl,
+        ingredients: filteredData.ingredients,
+        instructions: filteredData.instructions,
+        featured: filteredData.featured,
         rating: 0, // Default rating for new recipes
-      });
+      };
+      
+      await api.addRecipe(recipeData);
       
       toast({
         title: "Tarif başarıyla eklendi!",
