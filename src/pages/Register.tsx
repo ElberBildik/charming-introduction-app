@@ -38,7 +38,6 @@ const Register = () => {
       toast({
         title: "Hesabınız oluşturuldu!",
         description: "Yemek tariflerine hoş geldiniz.",
-        icon: <CheckCircle className="h-5 w-5 text-green-500" />,
       });
       navigate("/login");
     } catch (error) {
