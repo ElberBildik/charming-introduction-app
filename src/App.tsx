@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Products from "./pages/Products";
 import Tarifler from "./pages/Tarifler";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import TarifEkle from "./pages/TarifEkle";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/products" element={<Products />} />
             <Route path="/tarifler" element={<Tarifler />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/tarif-ekle" element={<TarifEkle />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
