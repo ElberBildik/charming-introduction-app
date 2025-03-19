@@ -18,11 +18,12 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-up");
+            entry.target.classList.remove("opacity-0");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
     if (cardRef.current) {
@@ -40,7 +41,11 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
     <div
       ref={cardRef}
       className="group p-6 rounded-xl hover-lift border border-border/50 hover:border-primary/20 transition-all hover:shadow-sm opacity-0"
-      style={{ animationDelay: `${0.1 * index}s` }}
+      style={{ 
+        animationDelay: `${0.1 * index}s`, 
+        animationFillMode: "forwards",
+        animationDuration: "0.7s" 
+      }}
     >
       <div className="mb-4 p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center text-primary">
         {icon}
@@ -60,21 +65,31 @@ const Features = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-up");
+            entry.target.classList.remove("opacity-0");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
     if (featuresRef.current) {
       observer.observe(featuresRef.current);
     }
 
+    // Ensure all cards are visible even if intersection observer fails
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.opacity-0').forEach(elem => {
+        elem.classList.add('animate-fade-up');
+        elem.classList.remove('opacity-0');
+      });
+    }, 1000);
+
     return () => {
       if (featuresRef.current) {
         observer.unobserve(featuresRef.current);
       }
+      clearTimeout(timer);
     };
   }, []);
 
