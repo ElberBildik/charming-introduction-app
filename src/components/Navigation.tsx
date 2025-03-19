@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui-custom/Button";
 import { cn } from "@/lib/utils";
 import { Menu, X, ChefHat, Utensils, BookOpen } from "lucide-react";
@@ -8,6 +8,7 @@ import { Menu, X, ChefHat, Utensils, BookOpen } from "lucide-react";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,19 +50,21 @@ const Navigation = () => {
             <Link to="/products" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
               Malzemeler
             </Link>
-            <Link to="/about" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-              Kategoriler
-            </Link>
-            <Link to="/contact" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
-              İletişim
-            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" size="sm">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => navigate("/login")}
+            >
               Giriş Yap
             </Button>
-            <Button size="sm" iconLeft={<Utensils className="mr-1 h-4 w-4" />}>
+            <Button 
+              size="sm" 
+              iconLeft={<Utensils className="mr-1 h-4 w-4" />}
+              onClick={() => navigate("/tarif-ekle")}
+            >
               Tarif Ekle
             </Button>
           </div>
@@ -107,27 +110,25 @@ const Navigation = () => {
             >
               Malzemeler
             </Link>
-            <Link
-              to="/about"
-              className="py-3 text-lg font-medium border-b border-border"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Kategoriler
-            </Link>
-            <Link
-              to="/contact"
-              className="py-3 text-lg font-medium border-b border-border"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              İletişim
-            </Link>
           </div>
 
           <div className="flex flex-col gap-3 mt-4">
-            <Button variant="outline" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                navigate("/login");
+              }}
+            >
               Giriş Yap
             </Button>
-            <Button onClick={() => setIsMobileMenuOpen(false)} iconLeft={<Utensils className="mr-1 h-4 w-4" />}>
+            <Button 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                navigate("/tarif-ekle");
+              }} 
+              iconLeft={<Utensils className="mr-1 h-4 w-4" />}
+            >
               Tarif Ekle
             </Button>
           </div>
