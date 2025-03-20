@@ -1,9 +1,8 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,28 +39,26 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navigation />
-      
+    <Layout>
       <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
             <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-primary/10">
               <ChefHat className="h-8 w-8 text-primary" />
             </div>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight">Hesabınıza giriş yapın</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-orange-800">Hesabınıza giriş yapın</h2>
+            <p className="mt-2 text-sm text-orange-700/80">
               Veya{" "}
-              <a href="/register" className="font-medium text-primary hover:text-primary/90">
+              <Link to="/register" className="font-medium text-primary hover:text-primary/90">
                 yeni hesap oluşturun
-              </a>
+              </Link>
             </p>
           </div>
           
           <form className="mt-8 space-y-6" onSubmit={handleLogin}>
             <div className="space-y-4 rounded-md shadow-sm">
               <div>
-                <Label htmlFor="email">E-posta adresi</Label>
+                <Label htmlFor="email" className="text-orange-800">E-posta adresi</Label>
                 <div className="mt-1 relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Mail className="h-5 w-5 text-muted-foreground" />
@@ -74,14 +71,14 @@ const Login = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10"
+                    className="pl-10 border-amber-200 focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50"
                     placeholder="ornek@email.com"
                   />
                 </div>
               </div>
               
               <div>
-                <Label htmlFor="password">Şifre</Label>
+                <Label htmlFor="password" className="text-orange-800">Şifre</Label>
                 <div className="mt-1 relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Lock className="h-5 w-5 text-muted-foreground" />
@@ -94,7 +91,7 @@ const Login = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10"
+                    className="pl-10 border-amber-200 focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50"
                   />
                 </div>
               </div>
@@ -106,9 +103,9 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  className="h-4 w-4 rounded border-amber-300 text-primary focus:ring-amber-200"
                 />
-                <Label htmlFor="remember-me" className="ml-2 block text-sm text-muted-foreground">
+                <Label htmlFor="remember-me" className="ml-2 block text-sm text-orange-700/80">
                   Beni hatırla
                 </Label>
               </div>
@@ -123,7 +120,7 @@ const Login = () => {
             <div>
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full bg-primary hover:bg-primary/90"
                 disabled={isLoading}
               >
                 {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
@@ -132,9 +129,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 
