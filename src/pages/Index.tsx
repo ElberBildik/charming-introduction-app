@@ -101,7 +101,7 @@ const Index = () => {
             </CardContent>
             <CardFooter className="flex justify-center border-t pt-6">
               <Link to="/products">
-                <Button size="lg" variant="default">
+                <Button size="lg" variant="primary">
                   Malzeme Seçimini Tamamla ve Tarif Bul
                 </Button>
               </Link>
