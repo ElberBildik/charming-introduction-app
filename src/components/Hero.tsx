@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Button } from "./ui-custom/Button";
-import { ArrowRight, ChefHat, Utensils } from "lucide-react";
+import { ArrowRight, ChefHat, Utensils, Search, Flame } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -60,13 +60,40 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 mt-2 animate-fade-up" style={{ animationDelay: '0.5s' }}>
             <Link to="/products">
-              <Button size="lg" iconRight={<Utensils className="ml-1 h-5 w-5" />}>
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                iconLeft={<Utensils className="h-5 w-5 mr-2" />}
+              >
                 Malzemeleri Seç
               </Button>
             </Link>
-            <Button variant="outline" size="lg" iconRight={<ArrowRight size={18} />}>
-              Popüler Tarifler
-            </Button>
+            <Link to="/tarifler">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-amber-400 text-amber-700 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                iconLeft={<Flame className="h-5 w-5 mr-2 text-orange-500" />}
+              >
+                Popüler Tarifler
+              </Button>
+            </Link>
+          </div>
+          
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up bg-white/30 backdrop-blur-sm p-4 rounded-xl shadow-md" style={{ animationDelay: '0.6s' }}>
+            <div className="text-sm text-amber-800 font-medium flex items-center">
+              <Search className="h-4 w-4 mr-1 text-amber-600" />
+              Hızlı Tarif Ara:
+            </div>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {["Köfte", "Çorba", "Pilav", "Makarna", "Tatlı"].map((item, idx) => (
+                <Link to={`/tarifler?q=${item}`} key={idx}>
+                  <span className="px-3 py-1 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full text-sm cursor-pointer transition-colors">
+                    {item}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
