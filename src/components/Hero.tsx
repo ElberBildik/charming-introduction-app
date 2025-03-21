@@ -69,20 +69,6 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        
-        <div className="mt-20 md:mt-28 relative animate-fade-up" style={{ animationDelay: '0.7s' }}>
-          <div className="aspect-[16/9] max-w-4xl mx-auto rounded-xl overflow-hidden bg-secondary/50 shadow-lg">
-            <div className="w-full h-full bg-gradient-to-br from-secondary to-secondary/20 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-cover bg-center">
-              <div className="glass p-8 rounded-lg text-center shadow-lg">
-                <p className="text-xl font-medium">Binlerce Tarif Keşfedin</p>
-                <p className="text-sm text-muted-foreground">Her gün yeni tarifler ekleniyor</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="absolute -bottom-6 -right-6 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-70" />
-          <div className="absolute -top-6 -left-6 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-70" />
-        </div>
       </div>
     </div>
   );
