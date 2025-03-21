@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
@@ -36,7 +35,8 @@ const fallbackRecipes: Recipe[] = [
     cookTime: 15,
     featured: true,
     ingredients: ["kıyma", "soğan", "maydanoz", "tuz", "karabiber"],
-    instructions: ["Kıymayı geniş bir kaba alın", "Soğan ve maydanozu ince kıyın ve kıymaya ekleyin", "Tuz ve karabiber ekleyip iyice yoğurun", "Köfteleri şekillendirip pişirin"]
+    instructions: ["Kıymayı geniş bir kaba alın", "Soğan ve maydanozu ince kıyın ve kıymaya ekleyin", "Tuz ve karabiber ekleyip iyice yoğurun", "Köfteleri şekillendirip pişirin"],
+    createdAt: new Date().toISOString()
   },
   {
     _id: "2",
@@ -50,7 +50,8 @@ const fallbackRecipes: Recipe[] = [
     cookTime: 10,
     featured: true,
     ingredients: ["makarna", "kabak", "havuç", "biber", "soğan", "sarımsak", "zeytinyağı"],
-    instructions: ["Makarnayı haşlayın", "Sebzeleri küçük küçük doğrayın", "Sebzeleri zeytinyağında soteleyin", "Haşlanmış makarnayı sebzelerle karıştırın"]
+    instructions: ["Makarnayı haşlayın", "Sebzeleri küçük küçük doğrayın", "Sebzeleri zeytinyağında soteleyin", "Haşlanmış makarnayı sebzelerle karıştırın"],
+    createdAt: new Date().toISOString()
   },
   {
     _id: "3",
@@ -64,7 +65,8 @@ const fallbackRecipes: Recipe[] = [
     cookTime: 30,
     featured: true,
     ingredients: ["tavuk göğsü", "un", "yumurta", "galeta unu", "tuz", "karabiber", "kekik"],
-    instructions: ["Tavukları dilimleyin", "Una bulayıp yumurtaya batırın", "Galeta ununa bulayın", "Kızgın yağda pişirin"]
+    instructions: ["Tavukları dilimleyin", "Una bulayıp yumurtaya batırın", "Galeta ununa bulayın", "Kızgın yağda pişirin"],
+    createdAt: new Date().toISOString()
   },
   {
     _id: "4",
@@ -78,7 +80,8 @@ const fallbackRecipes: Recipe[] = [
     cookTime: 40,
     featured: true,
     ingredients: ["patlıcan", "kıyma", "soğan", "domates", "biber", "sarımsak", "zeytinyağı"],
-    instructions: ["Patlıcanları boydan yarıp tuzlu suda bekletin", "Kıymalı harcı hazırlayın", "Patlıcanları kızartıp içini açın", "Kıymalı harcı doldurup fırınlayın"]
+    instructions: ["Patlıcanları boydan yarıp tuzlu suda bekletin", "Kıymalı harcı hazırlayın", "Patlıcanları kızartıp içini açın", "Kıymalı harcı doldurup fırınlayın"],
+    createdAt: new Date().toISOString()
   }
 ];
 
@@ -96,7 +99,8 @@ const seasonalRecipes: Recipe[] = [
     cookTime: 15,
     featured: true,
     ingredients: ["kabak", "un", "yumurta", "dereotu", "maydanoz", "tuz", "karabiber"],
-    instructions: ["Kabakları rendeleyin ve suyunu sıkın", "Diğer malzemelerle karıştırın", "Kaşıkla alıp kızgın yağda kızartın"]
+    instructions: ["Kabakları rendeleyin ve suyunu sıkın", "Diğer malzemelerle karıştırın", "Kaşıkla alıp kızgın yağda kızartın"],
+    createdAt: new Date().toISOString()
   },
   {
     _id: "6",
@@ -110,7 +114,8 @@ const seasonalRecipes: Recipe[] = [
     cookTime: 30,
     featured: true,
     ingredients: ["balkabağı", "soğan", "havuç", "patates", "süt", "krema", "tuz", "karabiber"],
-    instructions: ["Sebzeleri doğrayıp haşlayın", "Blenderdan geçirin", "Süt ve krema ekleyip kaynatın", "Baharatlarla tatlandırın"]
+    instructions: ["Sebzeleri doğrayıp haşlayın", "Blenderdan geçirin", "Süt ve krema ekleyip kaynatın", "Baharatlarla tatlandırın"],
+    createdAt: new Date().toISOString()
   }
 ];
 
@@ -156,7 +161,8 @@ const trendingRecipes: Recipe[] = [
     cookTime: 25,
     featured: false,
     ingredients: ["bulgur", "soğan", "domates", "biber", "salça", "yağ", "tuz"],
-    instructions: ["Soğanı yağda kavurun", "Biberleri ekleyip kavurmaya devam edin", "Domates ve salçayı ekleyin", "Bulguru ekleyip karıştırın", "Sıcak su ekleyip pişirin"]
+    instructions: ["Soğanı yağda kavurun", "Biberleri ekleyip kavurmaya devam edin", "Domates ve salçayı ekleyin", "Bulguru ekleyip karıştırın", "Sıcak su ekleyip pişirin"],
+    createdAt: new Date().toISOString()
   },
   {
     _id: "8",
@@ -170,7 +176,8 @@ const trendingRecipes: Recipe[] = [
     cookTime: 30,
     featured: false,
     ingredients: ["levrek", "limon", "defne yaprağı", "zeytinyağı", "tuz", "karabiber"],
-    instructions: ["Balığı temizleyin", "İçine limon ve defne yaprağı koyun", "Tuz, karabiber ve zeytinyağı ile marine edin", "Fırında pişirin"]
+    instructions: ["Balığı temizleyin", "İçine limon ve defne yaprağı koyun", "Tuz, karabiber ve zeytinyağı ile marine edin", "Fırında pişirin"],
+    createdAt: new Date().toISOString()
   },
   {
     _id: "9",
@@ -184,7 +191,8 @@ const trendingRecipes: Recipe[] = [
     cookTime: 0,
     featured: false,
     ingredients: ["labne peynir", "krema", "toz şeker", "bisküvi", "çilek", "limon suyu"],
-    instructions: ["Bisküvileri rondodan geçirin", "Labne, krema ve şekeri çırpın", "Bisküvileri kaba yerleştirip üzerine kremayı dökün", "Çilekleri dilimleyip üzerine yerleştirin", "Buzdolabında bekletin"]
+    instructions: ["Bisküvileri rondodan geçirin", "Labne, krema ve şekeri çırpın", "Bisküvileri kaba yerleştirip üzerine kremayı dökün", "Çilekleri dilimleyip üzerine yerleştirin", "Buzdolabında bekletin"],
+    createdAt: new Date().toISOString()
   }
 ];
 
