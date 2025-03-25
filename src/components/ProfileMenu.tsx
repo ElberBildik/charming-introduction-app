@@ -12,10 +12,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronsDown, User, Settings, LogOut, BookMarked, PenSquare } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ProfileMenu = () => {
   const { user, logout } = useUser();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const handleLogout = () => {
     logout();
@@ -45,7 +47,11 @@ const ProfileMenu = () => {
         <span className="text-sm font-medium hidden md:block">{user?.name}</span>
         <ChevronsDown className="h-4 w-4 opacity-50" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent 
+        align={isMobile ? "end" : "end"} 
+        className="w-56 z-[60] bg-popover border border-border"
+        sideOffset={isMobile ? 5 : 4}
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user?.name}</p>

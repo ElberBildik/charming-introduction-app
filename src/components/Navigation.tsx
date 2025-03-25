@@ -22,6 +22,19 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Add body lock when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -87,79 +100,83 @@ const Navigation = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 bg-background md:hidden transition-transform duration-300 ease-in-out pt-20",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <Link
-              to="/"
-              className="py-3 text-lg font-medium border-b border-border"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Ana Sayfa
-            </Link>
-            <Link
-              to="/tarifler"
-              className="py-3 text-lg font-medium border-b border-border"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Tarifler
-            </Link>
-            <Link
-              to="/products"
-              className="py-3 text-lg font-medium border-b border-border"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Malzemeler
-            </Link>
-          </div>
+      {/* Mobile Menu - Fixed to better control the stacking context */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-background/95 backdrop-blur-sm md:hidden pt-20 overflow-y-auto"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          <div 
+            className="container mx-auto px-6 py-8 flex flex-col gap-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex flex-col gap-2">
+              <Link
+                to="/"
+                className="py-3 text-lg font-medium border-b border-border"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Ana Sayfa
+              </Link>
+              <Link
+                to="/tarifler"
+                className="py-3 text-lg font-medium border-b border-border"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Tarifler
+              </Link>
+              <Link
+                to="/products"
+                className="py-3 text-lg font-medium border-b border-border"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Malzemeler
+              </Link>
+            </div>
 
-          <div className="flex flex-col gap-3 mt-4">
-            {isAuthenticated ? (
-              <>
-                <Link 
-                  to="/profile"
-                  className="py-3 text-lg font-medium border-b border-border"
-                  onClick={() => setIsMobileMenuOpen(false)}
+            <div className="flex flex-col gap-3 mt-4">
+              {isAuthenticated ? (
+                <>
+                  <Link 
+                    to="/profile"
+                    className="py-3 text-lg font-medium border-b border-border"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Profilim
+                  </Link>
+                  <Link 
+                    to="/favorites"
+                    className="py-3 text-lg font-medium border-b border-border"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Favorilerim
+                  </Link>
+                </>
+              ) : (
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/login");
+                  }}
                 >
-                  Profilim
-                </Link>
-                <Link 
-                  to="/favorites"
-                  className="py-3 text-lg font-medium border-b border-border"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Favorilerim
-                </Link>
-              </>
-            ) : (
+                  Giriş Yap
+                </Button>
+              )}
               <Button 
-                variant="outline" 
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  navigate("/login");
-                }}
+                  navigate("/tarif-ekle");
+                }} 
+                iconLeft={<Utensils className="mr-1 h-4 w-4" />}
+                className="mt-2"
               >
-                Giriş Yap
+                Tarif Ekle
               </Button>
-            )}
-            <Button 
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/tarif-ekle");
-              }} 
-              iconLeft={<Utensils className="mr-1 h-4 w-4" />}
-            >
-              Tarif Ekle
-            </Button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };

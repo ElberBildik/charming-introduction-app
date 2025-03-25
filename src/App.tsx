@@ -18,15 +18,23 @@ import Settings from "./pages/Settings";
 import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <UserProvider>
       <TooltipProvider>
-        <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50 text-foreground">
-          <Toaster />
-          <Sonner />
+        <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50 text-foreground relative">
+          {/* Z-index values ensure proper stacking */}
+          <Toaster containerClassName="z-[100]" />
+          <Sonner position="top-center" className="z-[100]" />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
