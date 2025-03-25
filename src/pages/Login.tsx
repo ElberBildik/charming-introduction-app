@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@/contexts/UserContext";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { login } = useUser();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,10 +24,23 @@ const Login = () => {
     try {
       // Simulating login for demo purposes
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Create mock user data
+      const userData = {
+        id: "user123",
+        name: "Kullanıcı Adı",
+        email: email,
+        // You could add avatar here if available
+      };
+      
+      // Login the user (store in context and localStorage)
+      login(userData);
+      
       toast({
         title: "Başarıyla giriş yapıldı!",
         description: "Yemek tariflerine hoş geldiniz.",
       });
+      
       navigate("/");
     } catch (error) {
       toast({

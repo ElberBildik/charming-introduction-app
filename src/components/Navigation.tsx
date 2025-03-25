@@ -1,14 +1,17 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "@/contexts/UserContext";
 import { Button } from "./ui-custom/Button";
+import ProfileMenu from "./ProfileMenu";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChefHat, Utensils, BookOpen } from "lucide-react";
+import { Menu, X, ChefHat, Utensils } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,13 +56,17 @@ const Navigation = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => navigate("/login")}
-            >
-              Giriş Yap
-            </Button>
+            {isAuthenticated ? (
+              <ProfileMenu />
+            ) : (
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => navigate("/login")}
+              >
+                Giriş Yap
+              </Button>
+            )}
             <Button 
               size="sm" 
               iconLeft={<Utensils className="mr-1 h-4 w-4" />}
@@ -113,15 +120,34 @@ const Navigation = () => {
           </div>
 
           <div className="flex flex-col gap-3 mt-4">
-            <Button 
-              variant="outline" 
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/login");
-              }}
-            >
-              Giriş Yap
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Link 
+                  to="/profile"
+                  className="py-3 text-lg font-medium border-b border-border"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Profilim
+                </Link>
+                <Link 
+                  to="/favorites"
+                  className="py-3 text-lg font-medium border-b border-border"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Favorilerim
+                </Link>
+              </>
+            ) : (
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/login");
+                }}
+              >
+                Giriş Yap
+              </Button>
+            )}
             <Button 
               onClick={() => {
                 setIsMobileMenuOpen(false);
