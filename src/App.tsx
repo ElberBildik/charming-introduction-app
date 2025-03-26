@@ -35,8 +35,8 @@ const App = () => (
     <TooltipProvider>
       <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50 text-foreground relative">
         {/* Z-index values ensure proper stacking */}
-        <Toaster className="z-[100]" />
-        <Sonner position="top-center" className="z-[100]" />
+        <Toaster />
+        <Sonner position="top-center" />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
