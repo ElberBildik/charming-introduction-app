@@ -35,48 +35,83 @@ const Footer = () => {
           <div>
             <h3 className="font-medium mb-4">Tarifler</h3>
             <ul className="space-y-3">
-              {["Kahvaltı", "Ana Yemekler", "Tatlılar", "Çorbalar", "Salatalar"].map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/kahvalti" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Kahvaltı
+                </Link>
+              </li>
+              <li>
+                <Link to="/ana-yemekler" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Ana Yemekler
+                </Link>
+              </li>
+              <li>
+                <Link to="/tatlilar" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Tatlılar
+                </Link>
+              </li>
+              <li>
+                <Link to="/corbalar" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Çorbalar
+                </Link>
+              </li>
+              <li>
+                <Link to="/salatalar" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Salatalar
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-medium mb-4">Hakkımızda</h3>
             <ul className="space-y-3">
-              {["Biz Kimiz", "Blog", "Kariyer", "İletişim"].map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/biz-kimiz" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Biz Kimiz
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/kariyer" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Kariyer
+                </Link>
+              </li>
+              <li>
+                <Link to="/iletisim" className="text-muted-foreground hover:text-foreground transition-colors">
+                  İletişim
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-medium mb-4">Yardım</h3>
             <ul className="space-y-3">
-              {["SSS", "Yardım Merkezi", "Topluluk", "İletişim"].map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/sss" className="text-muted-foreground hover:text-foreground transition-colors">
+                  SSS
+                </Link>
+              </li>
+              <li>
+                <Link to="/yardim-merkezi" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Yardım Merkezi
+                </Link>
+              </li>
+              <li>
+                <Link to="/topluluk" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Topluluk
+                </Link>
+              </li>
+              <li>
+                <Link to="/iletisim" className="text-muted-foreground hover:text-foreground transition-colors">
+                  İletişim
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -87,19 +122,19 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             <Link
-              to="#"
+              to="/gizlilik"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Gizlilik
             </Link>
             <Link
-              to="#"
+              to="/kullanim-sartlari"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Kullanım Şartları
             </Link>
             <Link
-              to="#"
+              to="/cerezler"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Çerezler
