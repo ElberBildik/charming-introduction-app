@@ -99,7 +99,8 @@ router.patch('/:id', getRecipe, async (req, res) => {
 // Tarifi sil
 router.delete('/:id', getRecipe, async (req, res) => {
   try {
-    await res.recipe.remove();
+    // Using deleteOne instead of remove (which is deprecated)
+    await Recipe.deleteOne({ _id: res.recipe._id });
     res.json({ message: 'Tarif silindi' });
   } catch (err) {
     res.status(500).json({ message: err.message });
