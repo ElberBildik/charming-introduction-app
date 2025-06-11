@@ -162,17 +162,17 @@ const Index = () => {
   return (
     <Layout>
       {/* Kompakt Hero Bölümü */}
-      <section className="relative pt-20 pb-8 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
+      <section className="relative pt-20 pb-8 bg-gradient-to-br from-green-50 via-emerald-50 to-green-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-4">
-              <ChefHat className="h-5 w-5 text-orange-600" />
-              <span className="text-sm font-medium text-orange-800">YemekyApp'e Hoş Geldiniz</span>
+              <ChefHat className="h-5 w-5 text-green-600" />
+              <span className="text-sm font-medium text-green-800">YemekyApp'e Hoş Geldiniz</span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-orange-900 mb-3">
+            <h1 className="text-3xl md:text-4xl font-bold text-green-900 mb-3">
               Hangi Tarifi Denemek İstiyorsunuz?
             </h1>
-            <p className="text-orange-700/80 text-lg max-w-2xl mx-auto">
+            <p className="text-green-700/80 text-lg max-w-2xl mx-auto">
               Malzemelerinizi seçin veya popüler tarifleri keşfedin
             </p>
           </div>
@@ -188,7 +188,7 @@ const Index = () => {
               <input
                 type="text"
                 placeholder="Tarif veya malzeme arayın..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -213,7 +213,7 @@ const Index = () => {
         {/* Hızlı Kategori Seçimi */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { name: "Kahvaltı", icon: "☕", path: "/kahvalti", color: "from-yellow-400 to-orange-400" },
+            { name: "Kahvaltı", icon: "☕", path: "/kahvalti", color: "from-yellow-400 to-red-400" },
             { name: "Ana Yemek", icon: "🍽️", path: "/ana-yemekler", color: "from-red-400 to-pink-400" },
             { name: "Çorbalar", icon: "🍲", path: "/corbalar", color: "from-green-400 to-blue-400" },
             { name: "Tatlılar", icon: "🍰", path: "/tatlilar", color: "from-purple-400 to-pink-400" }
@@ -234,8 +234,8 @@ const Index = () => {
       <section className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <TrendingUp className="h-6 w-6 text-orange-600" />
-            <h2 className="text-2xl font-bold text-orange-800">
+            <TrendingUp className="h-6 w-6 text-green-600" />
+            <h2 className="text-2xl font-bold text-green-800">
               {searchTerm ? `"${searchTerm}" için Sonuçlar` : "Öne Çıkan Tarifler"}
             </h2>
           </div>
@@ -271,35 +271,35 @@ const Index = () => {
 
       {/* Popüler Malzemeler - Hızlı Seçim */}
       <section className="container mx-auto px-4 py-8">
-        <Card className="border border-amber-200 shadow-lg bg-gradient-to-br from-amber-50 to-orange-50">
+        <Card className="border border-green-200 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50">
           <CardHeader className="text-center pb-4">
-            <CardTitle className="text-xl text-orange-800 flex items-center justify-center gap-2">
+            <CardTitle className="text-xl text-green-800 flex items-center justify-center gap-2">
               <Utensils className="h-5 w-5" />
               Popüler Malzemeler ile Tarif Bul
             </CardTitle>
-            <CardDescription className="text-orange-700/80">
+            <CardDescription className="text-green-700/80">
               Malzeme seçin, size özel tarifleri görün
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
               {popularIngredients.map((ingredient) => (
-                <div key={ingredient.id} className="flex flex-col items-center p-3 rounded-lg hover:bg-amber-100/50 transition-colors cursor-pointer group">
-                  <div className="w-16 h-16 rounded-full overflow-hidden bg-white border border-amber-200 mb-2 shadow-sm group-hover:shadow-md transition-shadow">
+                <div key={ingredient.id} className="flex flex-col items-center p-3 rounded-lg hover:bg-green-100/50 transition-colors cursor-pointer group">
+                  <div className="w-16 h-16 rounded-full overflow-hidden bg-white border border-green-200 mb-2 shadow-sm group-hover:shadow-md transition-shadow">
                     <img 
                       src={ingredient.imageUrl} 
                       alt={ingredient.name} 
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-sm font-medium text-amber-900 text-center">{ingredient.name}</span>
+                  <span className="text-sm font-medium text-green-900 text-center">{ingredient.name}</span>
                 </div>
               ))}
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
             <Link to="/products">
-              <Button size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600">
+              <Button size="lg" className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Detaylı Malzeme Seçimi
               </Button>
@@ -325,14 +325,14 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
-        <div className="p-4 bg-gradient-to-br from-white to-amber-50">
-          <h3 className="font-semibold text-lg mb-2 text-orange-800">{recipe.title}</h3>
+        <div className="p-4 bg-gradient-to-br from-white to-green-50">
+          <h3 className="font-semibold text-lg mb-2 text-green-800">{recipe.title}</h3>
           <div className="flex items-center justify-between">
-            <span className="text-sm text-orange-700/70 flex items-center">
+            <span className="text-sm text-green-700/70 flex items-center">
               <Clock className="h-4 w-4 mr-1" />
               {recipe.prepTime} dk
             </span>
-            <span className="px-2 py-1 bg-orange-100 rounded-full text-xs font-medium text-orange-800">
+            <span className="px-2 py-1 bg-green-100 rounded-full text-xs font-medium text-green-800">
               {recipe.difficulty}
             </span>
           </div>

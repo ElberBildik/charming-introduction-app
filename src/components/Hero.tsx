@@ -62,7 +62,7 @@ const Hero = () => {
             <Link to="/products">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
                 iconLeft={<Utensils className="h-5 w-5 mr-2" />}
               >
                 Malzemeleri Seç
@@ -72,8 +72,8 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-2 border-amber-400 text-amber-700 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-                iconLeft={<Flame className="h-5 w-5 mr-2 text-orange-500" />}
+                className="border-2 border-green-400 text-green-700 hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                iconLeft={<Flame className="h-5 w-5 mr-2 text-red-500" />}
               >
                 Popüler Tarifler
               </Button>
@@ -81,14 +81,14 @@ const Hero = () => {
           </div>
           
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up bg-white/30 backdrop-blur-sm p-4 rounded-xl shadow-md" style={{ animationDelay: '0.6s' }}>
-            <div className="text-sm text-amber-800 font-medium flex items-center">
-              <Search className="h-4 w-4 mr-1 text-amber-600" />
+            <div className="text-sm text-green-800 font-medium flex items-center">
+              <Search className="h-4 w-4 mr-1 text-green-600" />
               Hızlı Tarif Ara:
             </div>
             <div className="flex flex-wrap gap-2 justify-center">
               {["Köfte", "Çorba", "Pilav", "Makarna", "Tatlı"].map((item, idx) => (
                 <Link to={`/tarifler?q=${item}`} key={idx}>
-                  <span className="px-3 py-1 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full text-sm cursor-pointer transition-colors">
+                  <span className="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-800 rounded-full text-sm cursor-pointer transition-colors">
                     {item}
                   </span>
                 </Link>
