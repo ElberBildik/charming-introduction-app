@@ -2,11 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
 import ProductShowcase from "@/components/ProductShowcase";
 import { Button } from "@/components/ui-custom/Button";
-import { Utensils, Search, BookOpen, ShoppingCart, ChefHat, Clock, Star } from "lucide-react";
+import { Utensils, Search, BookOpen, ShoppingCart, ChefHat, Clock, Star, Filter, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { api, Recipe } from "@/services/api";
@@ -128,15 +126,83 @@ const Index = () => {
 
   return (
     <Layout>
-      <Hero />
+      {/* Kompakt Hero Bölümü */}
+      <section className="relative pt-20 pb-8 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-4">
+              <ChefHat className="h-5 w-5 text-orange-600" />
+              <span className="text-sm font-medium text-orange-800">YemekyApp'e Hoş Geldiniz</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-orange-900 mb-3">
+              Hangi Tarifi Denemek İstiyorsunuz?
+            </h1>
+            <p className="text-orange-700/80 text-lg max-w-2xl mx-auto">
+              Malzemelerinizi seçin veya popüler tarifleri keşfedin
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Hızlı Arama ve Kategori Seçimi */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+          <div className="flex flex-col md:flex-row gap-4 items-center">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <input
+                type="text"
+                placeholder="Tarif veya malzeme arayın..."
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
+            </div>
+            <div className="flex gap-2">
+              <Link to="/products">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Filter className="h-4 w-4" />
+                  Malzeme Seç
+                </Button>
+              </Link>
+              <Link to="/tarifler">
+                <Button className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Tüm Tarifler
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Hızlı Kategori Seçimi */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[
+            { name: "Kahvaltı", icon: "☕", path: "/kahvalti", color: "from-yellow-400 to-orange-400" },
+            { name: "Ana Yemek", icon: "🍽️", path: "/ana-yemekler", color: "from-red-400 to-pink-400" },
+            { name: "Çorbalar", icon: "🍲", path: "/corbalar", color: "from-green-400 to-blue-400" },
+            { name: "Tatlılar", icon: "🍰", path: "/tatlilar", color: "from-purple-400 to-pink-400" }
+          ].map((category, index) => (
+            <Link key={index} to={category.path}>
+              <div className={`bg-gradient-to-br ${category.color} rounded-xl p-4 text-white hover:scale-105 transition-transform cursor-pointer shadow-md`}>
+                <div className="text-center">
+                  <div className="text-2xl mb-2">{category.icon}</div>
+                  <div className="font-semibold">{category.name}</div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
       
-      {/* Günün Tarifleri - Dinamik Öneriler */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-orange-800 mb-3">Günün Tarifleri</h2>
-          <p className="text-orange-700/80 max-w-2xl mx-auto">
-            Her gün yenilenen lezzetli tarif önerileri ile mutfağınıza ilham katın!
-          </p>
+      {/* Öne Çıkan Tarifler */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-6 w-6 text-orange-600" />
+            <h2 className="text-2xl font-bold text-orange-800">Öne Çıkan Tarifler</h2>
+          </div>
+          <Link to="/tarifler">
+            <Button variant="outline" size="sm">Tümünü Gör</Button>
+          </Link>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -164,81 +230,46 @@ const Index = () => {
           )}
         </div>
       </section>
-      
-      {/* Malzeme Seçimi Alanı */}
-      <section className="container mx-auto px-4 py-12">
+
+      {/* Popüler Malzemeler - Hızlı Seçim */}
+      <section className="container mx-auto px-4 py-8">
         <Card className="border border-amber-200 shadow-lg bg-gradient-to-br from-amber-50 to-orange-50">
-          <CardHeader className="text-center border-b border-amber-100 pb-6">
-            <CardTitle className="text-2xl text-orange-800">Ne Yapacağınıza Karar Veremediniz mi?</CardTitle>
-            <CardDescription className="text-lg text-orange-700/80">
-              Evdeki malzemelerinizi seçin, size özel tarif önerelim!
+          <CardHeader className="text-center pb-4">
+            <CardTitle className="text-xl text-orange-800 flex items-center justify-center gap-2">
+              <Utensils className="h-5 w-5" />
+              Popüler Malzemeler ile Tarif Bul
+            </CardTitle>
+            <CardDescription className="text-orange-700/80">
+              Malzeme seçin, size özel tarifleri görün
             </CardDescription>
           </CardHeader>
-          <CardContent className="pt-6">
-            <Tabs defaultValue="popular" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-amber-100/50 mb-6">
-                <TabsTrigger value="popular" className="data-[state=active]:bg-amber-200 data-[state=active]:text-amber-900">Popüler Malzemeler</TabsTrigger>
-                <TabsTrigger value="all" className="data-[state=active]:bg-amber-200 data-[state=active]:text-amber-900">Tüm Malzemeler</TabsTrigger>
-              </TabsList>
-              <TabsContent value="popular" className="mt-6">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {popularIngredients.map((ingredient) => (
-                    <div key={ingredient.id} className="flex flex-col items-center p-3 rounded-lg hover:bg-amber-100/50 transition-colors cursor-pointer group">
-                      <div className="w-16 h-16 rounded-full overflow-hidden bg-white border border-amber-200 mb-2 shadow-sm group-hover:shadow-md transition-shadow">
-                        <img 
-                          src={ingredient.imageUrl} 
-                          alt={ingredient.name} 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <span className="text-sm font-medium text-amber-900 text-center">{ingredient.name}</span>
-                    </div>
-                  ))}
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+              {popularIngredients.map((ingredient) => (
+                <div key={ingredient.id} className="flex flex-col items-center p-3 rounded-lg hover:bg-amber-100/50 transition-colors cursor-pointer group">
+                  <div className="w-16 h-16 rounded-full overflow-hidden bg-white border border-amber-200 mb-2 shadow-sm group-hover:shadow-md transition-shadow">
+                    <img 
+                      src={ingredient.imageUrl} 
+                      alt={ingredient.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className="text-sm font-medium text-amber-900 text-center">{ingredient.name}</span>
                 </div>
-              </TabsContent>
-              <TabsContent value="all" className="mt-6">
-                <div className="text-center py-10 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg">
-                  <p className="text-orange-700/80 mb-4">Tüm malzemeleri görmek ve seçim yapmak için tam malzeme listesine gidin</p>
-                  <Link to="/products">
-                    <Button iconLeft={<ShoppingCart className="mr-2 h-5 w-5" />} variant="secondary">
-                      Malzeme Seçimine Git
-                    </Button>
-                  </Link>
-                </div>
-              </TabsContent>
-            </Tabs>
+              ))}
+            </div>
           </CardContent>
-          <CardFooter className="flex justify-center border-t border-amber-100 pt-6">
+          <CardFooter className="flex justify-center">
             <Link to="/products">
-              <Button size="lg" variant="primary">
-                Malzeme Seçimini Tamamla ve Tarif Bul
+              <Button size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600">
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Detaylı Malzeme Seçimi
               </Button>
             </Link>
           </CardFooter>
         </Card>
       </section>
-      
-      {/* En Popüler Şefler ve Trend Tarifler */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="bg-gradient-to-r from-orange-50 to-amber-100/70 rounded-3xl p-8 shadow-lg">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-orange-800 mb-3">Şeflerden İlham Alın</h2>
-            <p className="text-orange-700/80 max-w-2xl mx-auto">
-              Tecrübeli şeflerimizin özel tarifleri ve püf noktaları ile mutfakta ustalaşın!
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <Link to="/tarifler">
-              <Button variant="primary" size="lg" iconRight={<Search className="ml-1 w-5 h-5" />}>
-                Tüm Tarifleri Keşfet
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-      
-      <Features />
+
       <ProductShowcase />
     </Layout>
   );
