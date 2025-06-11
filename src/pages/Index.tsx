@@ -85,6 +85,9 @@ const fallbackRecipes: Recipe[] = [
 ];
 
 const Index = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
+
   // API'den tarifleri çekme
   const { data: recipes, isLoading, error } = useQuery({
     queryKey: ['recipes'],
@@ -107,14 +110,46 @@ const Index = () => {
   // Güncel ve yüksek puanlı tarif önerileri
   const [featuredRecipes, setFeaturedRecipes] = useState<Recipe[]>([]);
 
+  // Arama fonksiyonu
+  const handleSearch = (recipeList: Recipe[] | undefined) => {
+    if (!recipeList || recipeList.length === 0) {
+      return searchTerm === "" ? fallbackRecipes : 
+        fallbackRecipes.filter(recipe => 
+          recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          recipe.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          recipe.ingredients.some(ingredient => 
+            ingredient.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        );
+    }
+
+    if (searchTerm === "") {
+      return getShuffledRecipes(recipeList, 4);
+    }
+
+    return recipeList.filter(recipe => 
+      recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      recipe.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      recipe.ingredients.some(ingredient => 
+        ingredient.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  };
+
   useEffect(() => {
     // Sayfa yüklendiğinde otomatik olarak karıştırılmış tarifleri göster
     if (recipes && recipes.length > 0) {
-      setFeaturedRecipes(getShuffledRecipes(recipes, 4));
+      const searchResults = handleSearch(recipes);
+      setFilteredRecipes(searchResults);
+      if (searchTerm === "") {
+        setFeaturedRecipes(searchResults);
+      }
     } else {
-      setFeaturedRecipes(fallbackRecipes);
+      const searchResults = handleSearch(undefined);
+      setFilteredRecipes(searchResults);
+      setFeaturedRecipes(searchResults);
     }
-  }, [recipes]);
+  }, [recipes, searchTerm]);
 
   useEffect(() => {
     // Scroll to top when component mounts
@@ -154,6 +189,8 @@ const Index = () => {
                 type="text"
                 placeholder="Tarif veya malzeme arayın..."
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex gap-2">
@@ -198,7 +235,9 @@ const Index = () => {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-6 w-6 text-orange-600" />
-            <h2 className="text-2xl font-bold text-orange-800">Öne Çıkan Tarifler</h2>
+            <h2 className="text-2xl font-bold text-orange-800">
+              {searchTerm ? `"${searchTerm}" için Sonuçlar` : "Öne Çıkan Tarifler"}
+            </h2>
           </div>
           <Link to="/tarifler">
             <Button variant="outline" size="sm">Tümünü Gör</Button>
@@ -217,14 +256,13 @@ const Index = () => {
                 </div>
               </div>
             ))
-          ) : error ? (
-            // Hata durumunda fallback tarifleri göster
-            fallbackRecipes.map((recipe) => (
-              <RecipeCard key={recipe._id} recipe={recipe} />
-            ))
+          ) : filteredRecipes.length === 0 ? (
+            <div className="col-span-full text-center py-10">
+              <p className="text-gray-500 text-lg">"{searchTerm}" için tarif bulunamadı.</p>
+              <p className="text-gray-400 text-sm mt-2">Farklı bir arama terimi deneyin.</p>
+            </div>
           ) : (
-            // API'den gelen tarifleri göster
-            featuredRecipes.map((recipe) => (
+            filteredRecipes.slice(0, 8).map((recipe) => (
               <RecipeCard key={recipe._id} recipe={recipe} />
             ))
           )}
