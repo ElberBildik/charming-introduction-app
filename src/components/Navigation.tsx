@@ -44,26 +44,26 @@ const Navigation = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "py-3 glass glass-border border-t-0 border-x-0 shadow-sm"
-          : "py-5 bg-transparent"
+          ? "py-2 glass glass-border border-t-0 border-x-0 shadow-sm"
+          : "py-4 bg-transparent"
       )}
     >
       <div className="container mx-auto px-6 lg:px-8">
         <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <ChefHat className="h-7 w-7 text-primary" />
-            <div className="font-bold text-2xl tracking-tight">YemekyApp</div>
+            <div className="font-bold text-2xl tracking-tight text-foreground">YemekyApp</div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
-            <Link to="/" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg">
               Ana Sayfa
             </Link>
-            <Link to="/tarifler" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/tarifler" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg">
               Tarifler
             </Link>
-            <Link to="/products" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/products" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg">
               Malzemeler
             </Link>
           </div>
@@ -92,7 +92,7 @@ const Navigation = () => {
           {/* Mobile menu button */}
           <button
             onClick={toggleMobileMenu}
-            className="flex md:hidden text-foreground focus:outline-none"
+            className="flex md:hidden text-foreground focus:outline-none p-2 rounded-lg hover:bg-muted transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -100,7 +100,7 @@ const Navigation = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu - Fixed to better control the stacking context */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div 
           className="fixed inset-0 z-40 bg-background/95 backdrop-blur-sm md:hidden pt-20 overflow-y-auto"
@@ -113,21 +113,21 @@ const Navigation = () => {
             <div className="flex flex-col gap-2">
               <Link
                 to="/"
-                className="py-3 text-lg font-medium border-b border-border"
+                className="py-3 text-lg font-medium border-b border-border hover:text-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Ana Sayfa
               </Link>
               <Link
                 to="/tarifler"
-                className="py-3 text-lg font-medium border-b border-border"
+                className="py-3 text-lg font-medium border-b border-border hover:text-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Tarifler
               </Link>
               <Link
                 to="/products"
-                className="py-3 text-lg font-medium border-b border-border"
+                className="py-3 text-lg font-medium border-b border-border hover:text-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Malzemeler
@@ -139,14 +139,14 @@ const Navigation = () => {
                 <>
                   <Link 
                     to="/profile"
-                    className="py-3 text-lg font-medium border-b border-border"
+                    className="py-3 text-lg font-medium border-b border-border hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Profilim
                   </Link>
                   <Link 
                     to="/favorites"
-                    className="py-3 text-lg font-medium border-b border-border"
+                    className="py-3 text-lg font-medium border-b border-border hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Favorilerim
@@ -159,6 +159,7 @@ const Navigation = () => {
                     setIsMobileMenuOpen(false);
                     navigate("/login");
                   }}
+                  className="w-full"
                 >
                   Giriş Yap
                 </Button>
@@ -169,7 +170,7 @@ const Navigation = () => {
                   navigate("/tarif-ekle");
                 }} 
                 iconLeft={<Utensils className="mr-1 h-4 w-4" />}
-                className="mt-2"
+                className="mt-2 w-full"
               >
                 Tarif Ekle
               </Button>
