@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import ProductShowcase from "@/components/ProductShowcase";
 import { Button } from "@/components/ui-custom/Button";
-import { Utensils, Search, BookOpen, ShoppingCart, ChefHat, Clock, Star, Filter, TrendingUp } from "lucide-react";
+import { Utensils, Search, BookOpen, ShoppingCart, ChefHat, Clock, Star, Filter, TrendingUp, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { api, Recipe } from "@/services/api";
