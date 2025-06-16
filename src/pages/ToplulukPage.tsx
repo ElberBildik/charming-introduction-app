@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "@/components/Layout";
 import { Helmet } from "react-helmet";
@@ -57,15 +56,21 @@ const ToplulukPage = () => {
           </div>
           
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-64 bg-gray-200"></div>
+            <div className="h-64 bg-gradient-to-br from-green-100 to-emerald-200 flex items-center justify-center">
+              <div className="text-center">
+                <Users className="h-16 w-16 text-green-600 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-green-800">Aktif Topluluk</h3>
+                <p className="text-green-600">15,000+ Aktif Kullanıcı</p>
+              </div>
+            </div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">Topluluk Etkinlikleri</h3>
+              <h3 className="text-xl font-semibold mb-2">Canlı Topluluk</h3>
               <p className="text-muted-foreground mb-4">
-                Canlı yayınlar, tarif yarışmaları ve çevrimiçi atölye çalışmaları ile topluluğumuzda aktif olarak yer alın.
+                Binlerce yemek tutkunu ile birlikte tarifler paylaşın, yeni lezzetler keşfedin.
               </p>
-              <a href="#" className="text-primary font-medium hover:underline">
-                Yaklaşan Etkinlikler →
-              </a>
+              <Link to="/kullanici-tarifleri" className="text-primary font-medium hover:underline">
+                Topluluk Tariflerine Göz At →
+              </Link>
             </div>
           </div>
         </div>

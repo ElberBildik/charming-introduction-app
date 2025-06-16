@@ -1,12 +1,12 @@
-
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import { Helmet } from "react-helmet";
-import { Heart, MessageCircle, Share2, Clock, ChefHat, User, Star, Plus, Filter, Search, TrendingUp } from "lucide-react";
+import { Heart, MessageCircle, Share2, Clock, ChefHat, User, Star, Plus, Filter, Search, TrendingUp, Edit, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui-custom/Button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Link } from "react-router-dom";
+import { useUser } from "@/contexts/UserContext";
 
 // Örnek kullanıcı tarifleri verisi
 const userRecipes = [
@@ -118,6 +118,7 @@ const KullaniciTarifleriPage = () => {
   const [recipes, setRecipes] = useState(userRecipes);
   const [showComments, setShowComments] = useState<string | null>(null);
   const [newComment, setNewComment] = useState("");
+  const { user, isAuthenticated } = useUser();
 
   const handleLike = (recipeId: string) => {
     setRecipes(prev => prev.map(recipe => 
@@ -142,6 +143,24 @@ const KullaniciTarifleriPage = () => {
       navigator.clipboard.writeText(window.location.href);
       alert('Link kopyalandı!');
     }
+  };
+
+  const handleEdit = (recipeId: string) => {
+    // Tarif düzenleme sayfasına yönlendir
+    console.log('Düzenleme:', recipeId);
+    // navigate(`/tarif-duzenle/${recipeId}`);
+  };
+
+  const handleDelete = (recipeId: string) => {
+    if (window.confirm('Bu tarifi silmek istediğinizden emin misiniz?')) {
+      setRecipes(prev => prev.filter(recipe => recipe.id !== recipeId));
+      alert('Tarif başarıyla silindi!');
+    }
+  };
+
+  const isOwner = (recipe: any) => {
+    // Basit kontrol - gerçek uygulamada user ID'leri karşılaştırılmalı
+    return isAuthenticated && user?.name === recipe.author.name;
   };
 
   const filteredRecipes = recipes.filter(recipe => {
@@ -233,9 +252,30 @@ const KullaniciTarifleriPage = () => {
                       <p className="text-xs text-gray-500">{recipe.author.level} • {recipe.createdAt}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 text-amber-500">
-                    <Star className="h-4 w-4 fill-current" />
-                    <span className="text-sm font-medium">{recipe.rating}</span>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 text-amber-500">
+                      <Star className="h-4 w-4 fill-current" />
+                      <span className="text-sm font-medium">{recipe.rating}</span>
+                    </div>
+                    {/* Kullanıcının kendi tarifi ise düzenleme butonları göster */}
+                    {isOwner(recipe) && (
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => handleEdit(recipe.id)}
+                          className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                          title="Düzenle"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(recipe.id)}
+                          className="p-1 text-red-600 hover:bg-red-50 rounded transition-colors"
+                          title="Sil"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardHeader>
