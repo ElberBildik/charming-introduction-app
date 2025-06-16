@@ -2,7 +2,8 @@
 import React from "react";
 import Layout from "@/components/Layout";
 import { Helmet } from "react-helmet";
-import { UsersRound, MessageSquare, Award, Heart } from "lucide-react";
+import { UsersRound, MessageSquare, Award, Heart, Users, BookOpen, Share2, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ToplulukPage = () => {
   return (
@@ -69,7 +70,18 @@ const ToplulukPage = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+          <Link to="/kullanici-tarifleri" className="text-center p-6 bg-secondary/30 rounded-lg hover:bg-secondary/40 transition-colors group">
+            <Users className="h-12 w-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-xl font-semibold mb-2">Kullanıcı Tarifleri</h3>
+            <p className="text-muted-foreground mb-4">
+              Topluluğumuzun paylaştığı benzersiz tarifleri keşfedin ve kendi tariflerinizi ekleyin.
+            </p>
+            <span className="text-primary font-medium group-hover:underline">
+              Tarifleri Gör →
+            </span>
+          </Link>
+          
           <div className="text-center p-6 bg-secondary/30 rounded-lg">
             <MessageSquare className="h-12 w-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Forum</h3>
@@ -104,15 +116,52 @@ const ToplulukPage = () => {
           </div>
         </div>
         
+        {/* Yeni Topluluk Özellikleri */}
+        <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-8 mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center justify-center gap-2">
+              <TrendingUp className="text-green-600" />
+              Topluluk Aktivitesi
+            </h2>
+            <p className="text-green-700">Son 30 günde topluluğumuzda neler oldu?</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-800 mb-2">247</div>
+              <div className="text-green-600">Yeni Tarif</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-800 mb-2">1,840</div>
+              <div className="text-green-600">Yorum</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-800 mb-2">5,620</div>
+              <div className="text-green-600">Beğeni</div>
+            </div>
+          </div>
+        </div>
+        
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl font-semibold mb-4">Topluluğa Katılın</h2>
           <p className="mb-6">
             Hemen üye olun ve YemekyApp topluluğunun bir parçası olun. 
             Lezzet dolu bir yolculuk sizi bekliyor!
           </p>
-          <button className="bg-primary text-white px-8 py-3 rounded-md hover:bg-primary/90 transition-colors">
-            Şimdi Üye Ol
-          </button>
+          <div className="flex gap-4 justify-center">
+            <Link to="/kullanici-tarifleri">
+              <button className="bg-green-600 text-white px-8 py-3 rounded-md hover:bg-green-700 transition-colors flex items-center gap-2">
+                <BookOpen className="h-5 w-5" />
+                Tarifleri Keşfet
+              </button>
+            </Link>
+            <Link to="/tarif-ekle">
+              <button className="border border-green-600 text-green-600 px-8 py-3 rounded-md hover:bg-green-50 transition-colors flex items-center gap-2">
+                <Share2 className="h-5 w-5" />
+                Tarif Paylaş
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </Layout>

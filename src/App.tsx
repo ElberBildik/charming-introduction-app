@@ -29,6 +29,7 @@ import IletisimPage from "./pages/IletisimPage";
 import SSSPage from "./pages/SSSPage";
 import YardimMerkeziPage from "./pages/YardimMerkeziPage";
 import ToplulukPage from "./pages/ToplulukPage";
+import KullaniciTarifleriPage from "./pages/KullaniciTarifleriPage";
 
 const App = () => (
   <UserProvider>
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/sss" element={<SSSPage />} />
             <Route path="/yardim-merkezi" element={<YardimMerkeziPage />} />
             <Route path="/topluluk" element={<ToplulukPage />} />
+            <Route path="/kullanici-tarifleri" element={<KullaniciTarifleriPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
