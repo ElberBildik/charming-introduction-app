@@ -66,6 +66,9 @@ const Navigation = () => {
             <Link to="/products" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg">
               Malzemeler
             </Link>
+            <Link to="/topluluk" className="px-4 py-2 text-sm font-medium hover:text-primary transition-colors rounded-lg">
+              Topluluk
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
@@ -131,6 +134,13 @@ const Navigation = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Malzemeler
+              </Link>
+              <Link
+                to="/topluluk"
+                className="py-3 text-lg font-medium border-b border-border hover:text-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Topluluk
               </Link>
             </div>
 
