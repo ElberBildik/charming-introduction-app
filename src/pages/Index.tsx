@@ -136,6 +136,11 @@ const Index = () => {
     );
   };
 
+  // Malzeme seçimi fonksiyonu
+  const handleIngredientClick = (ingredientName: string) => {
+    setSearchTerm(ingredientName.toLowerCase());
+  };
+
   useEffect(() => {
     // Sayfa yüklendiğinde otomatik olarak karıştırılmış tarifleri göster
     if (recipes && recipes.length > 0) {
@@ -284,7 +289,11 @@ const Index = () => {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
               {popularIngredients.map((ingredient) => (
-                <div key={ingredient.id} className="flex flex-col items-center p-3 rounded-lg hover:bg-green-100/50 transition-colors cursor-pointer group">
+                <div 
+                  key={ingredient.id} 
+                  className="flex flex-col items-center p-3 rounded-lg hover:bg-green-100/50 transition-colors cursor-pointer group"
+                  onClick={() => handleIngredientClick(ingredient.name)}
+                >
                   <div className="w-16 h-16 rounded-full overflow-hidden bg-white border border-green-200 mb-2 shadow-sm group-hover:shadow-md transition-shadow">
                     <img 
                       src={ingredient.imageUrl} 
@@ -296,6 +305,53 @@ const Index = () => {
                 </div>
               ))}
             </div>
+            
+            {/* Seçilen malzemeye göre tarif öneri kartları */}
+            {searchTerm && (
+              <div className="mt-6 pt-6 border-t border-green-200">
+                <h3 className="text-lg font-semibold text-green-800 mb-4 flex items-center gap-2">
+                  <Search className="h-5 w-5" />
+                  "{searchTerm}" ile Yapılan Tarifler
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {filteredRecipes.slice(0, 3).map((recipe) => (
+                    <Link key={recipe._id} to={`/tarifler/${recipe._id}`} className="group">
+                      <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-green-100 group-hover:border-green-300">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-lg overflow-hidden bg-green-100 flex-shrink-0">
+                            <img 
+                              src={recipe.imageUrl} 
+                              alt={recipe.title} 
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-green-900 truncate">{recipe.title}</h4>
+                            <div className="flex items-center gap-2 mt-1">
+                              <span className="text-xs text-green-600 flex items-center">
+                                <Clock className="h-3 w-3 mr-1" />
+                                {recipe.prepTime} dk
+                              </span>
+                              <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                                {recipe.difficulty}
+                              </span>
+                            </div>
+                          </div>
+                          <ArrowRight className="h-4 w-4 text-green-400 group-hover:text-green-600 transition-colors" />
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                
+                {filteredRecipes.length === 0 && (
+                  <div className="text-center py-6">
+                    <p className="text-green-600">Bu malzeme ile tarif bulunamadı.</p>
+                    <p className="text-green-500 text-sm mt-1">Başka bir malzeme deneyin.</p>
+                  </div>
+                )}
+              </div>
+            )}
           </CardContent>
           <CardFooter className="flex justify-center">
             <Link to="/products">
